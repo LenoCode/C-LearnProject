@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SqlTransfLib</name>
+    </assembly>
+    <members>
+        <member name="M:SqlTransfLib.utilz.SQLStringUtilz.DivideIntoSeperateQueries(System.String,System.String[]@,System.String@)">
+                        <summary>
+                            It takes query like this(SELECT * FROM (SELECT * FROM inside) as b  ) and seperate into SELECT * FROM as b and SELECT * FROM inside 
+                        </summary>
+            
+        </member>
+    </members>
+</doc>

@@ -1,20 +1,12 @@
-﻿using HelperLib;
-
-// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
-
-
-static object? Get()
-{
-    if (2 == 2) return null;
-
-}
-
-int i = 0;
+﻿using System.Xml;
+using BenchmarkDotNet.Running;
+using SqlTransfLib.core.transformation.delegates;
+using SqlTransfExample.benchmarks;
 
 
-int j = i + 2;
+TransformationBenchmark.RunImplementationBenchmark();
 
 
+foreach(var s in "King kong je")Console.WriteLine(s);
 
-Messages.SayHi();
+

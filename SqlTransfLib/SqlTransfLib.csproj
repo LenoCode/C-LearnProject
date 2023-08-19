@@ -6,4 +6,19 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="core/" />
+    <Folder Include="core/transformation/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.7" />
+  </ItemGroup>
+
+
+  <PropertyGroup>
+
+    <DocumentationFile>CodeDocumentation.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>
