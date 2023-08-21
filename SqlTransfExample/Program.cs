@@ -4,9 +4,8 @@ using SqlTransfLib.core.transformation.delegates;
 using SqlTransfExample.benchmarks;
 
 
-TransformationBenchmark.RunImplementationBenchmark();
+BenchmarkField.RunImplementationBenchmark();
 
 
-foreach(var s in "King kong je")Console.WriteLine(s);
 
 

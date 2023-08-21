@@ -4,11 +4,58 @@
         <name>SqlTransfLib</name>
     </assembly>
     <members>
+        <member name="T:SqlTransfLib.core.transformation.delegates.ImplementationsDeprecated">
+            
+                  <summary>
+                    Currently deprecated
+                  </summary>
+        </member>
+        <member name="M:SqlTransfLib.core.transformation.delegates.Transformations.InitQueryFormating(System.String,SqlTransfLib.core.transformation.delegates.QUERY_TYPES@)">
+                    <summary>
+                      Entry point for formatting query
+                    </summary>
+                    <remarks>
+                      Functions inspects the beggining of query to deterimne what kind of query is it about.
+                      Is it about SELECT or INSERT for example.
+            
+                      Then functin returns appropriate Transform function.
+                    </remarks>
+            
+            
+                    <returns>
+                      <see cref="T:SqlTransfLib.core.transformation.delegates.Transform"/>?
+                    </returns>
+            
+        </member>
+        <member name="M:SqlTransfLib.utilz.SQLStringUtilz.ExtractTablesFromSelectQuery(System.String)">
+            
+                        <summary>
+                            This function will extract all tables SELECT query wants to get data from or if select gets data from inner queries
+                        </summary>
+            
+                        <returns>
+                            string[]
+                        </returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:SqlTransfLib.utilz.SQLStringUtilz.ExtractInnerQuery(System.String)" -->
+        <member name="M:SqlTransfLib.utilz.SQLStringUtilz.FindTablesAndExtractThem(System.String)">
+                        <summary>
+                            This function extract tables name from query.
+                        </summary>
+            
+                        <param name="partOfSelectQuery">
+                            we will get query like this 'from table1,table2'
+                        </param>
+            
+                         <returns>
+                            string[] -> {'table1','table2'}
+                        </returns>
+            
+        </member>
         <member name="M:SqlTransfLib.utilz.SQLStringUtilz.DivideIntoSeperateQueries(System.String,System.String[]@,System.String@)">
                         <summary>
                             It takes query like this(SELECT * FROM (SELECT * FROM inside) as b  ) and seperate into SELECT * FROM as b and SELECT * FROM inside 
                         </summary>
-            
         </member>
     </members>
 </doc>

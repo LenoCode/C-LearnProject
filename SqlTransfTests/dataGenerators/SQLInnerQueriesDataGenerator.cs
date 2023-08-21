@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Runtime.CompilerServices;
+using SqlTransfLib.core.transformation.delegates;
 
 namespace SqlTransfTests.dataGenerators
 {
@@ -7,8 +8,9 @@ namespace SqlTransfTests.dataGenerators
     {
         public IEnumerator<object[]> GetEnumerator()
         {
-            yield return new object[] { "SELECT * FROM (SELECT * FROM inside)"};
-            yield return new object[] { "SELECT * FROM (SELECT * FROM (SELECT * FROM double_inside))"};
+            yield return new object[] { "SELECT * FROM (SELECT * FROM inside)",QUERY_TYPES.SELECT};
+
+            yield return new object[] { "SELECT * FROM (SELECT * FROM (SELECT * FROM double_inside))", QUERY_TYPES.SELECT  };
         }
 
 

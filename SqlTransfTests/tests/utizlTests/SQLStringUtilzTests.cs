@@ -9,20 +9,81 @@ namespace SqlTransfTests.tests.utizlTests
 
         }
 
-        [Theory]
-        [ClassData(typeof(SQLInnerQueriesDataGenerator))]
-        public void Check_If_Parsing_SQLQuery_Returns_Proper_List_Of_Inner_Queries(string query){
-            
-            string[] splitQueries;
-            string queryTemplate;
+        [Theory(DisplayName = "Find all tables or queries from SELECT query")]
+        [MemberData(nameof(ExtractTableFromSelectData))]
+        public void Test_Function_ExtractTablesFromSelectQuery(string query, string[] expected)
+        {
 
-            SQLStringUtilz.DivideIntoSeperateQueries(query,out splitQueries,out queryTemplate);
+            string[] results = SQLStringUtilz.ExtractTablesFromSelectQuery(query);
 
-            //string finalQuery = SQLStringUtilz.CombineInOnQuery(splitQueries,queryTemplate);
-
-           // Assert.Equal(query,queryTemplate);
-
+            Assert.Equal(expected, results);
         }
-        
+
+        /******************************************************************************
+
+            DATA SAMPLE
+        */
+        public static IEnumerable<object[]> ExtractTableFromSelectData()
+        {
+            yield return new object[] { "SELECT * FROM table1,table2", new object[] { "table1", "table2" } };
+            yield return new object[] { "SELECT * FROM (SELECT * FROM inside)", new object[] { "SELECT * FROM inside" } };
+        }
+
+
+
+        [Theory(DisplayName = "Find all tables that from SELECT query")]
+        [MemberData(nameof(ExtractTableFromPartOfSql))]
+        public void Test_Function_FindTablesAndExtractThem(string partOfQuery, string[] expected)
+        {
+
+            string[] results = SQLStringUtilz.FindTablesAndExtractThem(partOfQuery);
+
+            Assert.Equal(expected, results);
+        }
+        /******************************************************************************
+
+            DATA SAMPLE
+        */
+        public static IEnumerable<object[]> ExtractTableFromPartOfSql()
+        {
+            yield return new object[] { "from table1,table2", new object[] { "table1", "table2" } };
+        }
+
+
+
+
+
+        [Theory(DisplayName = "Extract inner query from select")]
+        [MemberData(nameof(ExtractInnerQueryFromSelect))]
+        public void Test_Function_ExtractInnerQueryFromSelect(string partOfQuery, string expected)
+        {
+            string results = SQLStringUtilz.ExtractInnerQuery(partOfQuery);
+
+            Assert.Equal(expected, results);
+        }
+
+        /******************************************************************************
+
+            DATA SAMPLE
+        */
+        public static IEnumerable<object[]> ExtractInnerQueryFromSelect()
+        {
+            yield return new object[] { "(SELECT * FROM inside)", "SELECT * FROM inside" };
+            yield return new object[] { "(SELECT * FROM (SELECT * FROM inside2) )", "SELECT * FROM (SELECT * FROM inside2) " };
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

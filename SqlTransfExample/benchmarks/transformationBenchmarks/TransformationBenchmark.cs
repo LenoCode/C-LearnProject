@@ -32,7 +32,7 @@ namespace SqlTransfExample.benchmarks
         public void RunWithClasses()
         {
             int SIZE = 1000;
-            Implementations[] implementations = new Implementations[SIZE];
+            ImplementationsDeprecated[] implementations = new ImplementationsDeprecated[SIZE];
 
 
             for (int i = 0; i < SIZE; ++i)
