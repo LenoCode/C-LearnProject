@@ -15,8 +15,8 @@ namespace SqlTransfLib.utilz
                 string[]
             </returns>
         */
-        public static string[] ExtractTablesFromSelectQuery(string query){
-            query = query.ToLower();
+        public static string[] ExtractTablesFromSelectQuery(string queryOrg){
+            string query = queryOrg.ToLower();
 
             if( query.IndexOf("from") is var index   && (index != -1) ){
                 index += FROM_CHAR_LENGTH;
@@ -25,16 +25,14 @@ namespace SqlTransfLib.utilz
                     if(query[i] == ' ')continue;
 
                     if(query[i] == '('){
-
-                        
+                        return new string[]{ExtractInnerQuery(queryOrg.Substring(i))};
                     }else{
-                        return FindTablesAndExtractThem(query.Substring(i));
+                        return FindTablesAndExtractThem(queryOrg.Substring(i));
                     }
 
                 }
 
             }
-
             return new string[0];
         }
 
