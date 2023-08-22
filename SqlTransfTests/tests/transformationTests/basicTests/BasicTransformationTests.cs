@@ -26,5 +26,16 @@ namespace SqlTransfTests.transformationTests.basicTests
             Assert.Equal(expected, result);
         }
 
+
+
+        [Theory]
+        [ClassData(typeof(SQLInnerQueriesDataGenerator))]
+        public void Test_SQL_Select_formating_function(string query, QUERY_TYPES expected)
+        {
+            QUERY_TYPES result;
+            Transform formatFunction = Transformations.InitQueryFormating(query, out result);
+            formatFunction(query);
+        }
+
     }
 }

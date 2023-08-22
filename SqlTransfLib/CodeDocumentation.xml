@@ -10,6 +10,12 @@
                     Currently deprecated
                   </summary>
         </member>
+        <member name="M:SqlTransfLib.core.transformation.delegates.Transformations.StartSelectQueryFormating(System.String)">
+                    <summary>
+                      Main function for starting formating SELECT query
+                    </summary>
+            
+        </member>
         <member name="M:SqlTransfLib.core.transformation.delegates.Transformations.InitQueryFormating(System.String,SqlTransfLib.core.transformation.delegates.QUERY_TYPES@)">
                     <summary>
                       Entry point for formatting query
@@ -50,6 +56,21 @@
                          <returns>
                             string[] -> {'table1','table2'}
                         </returns>
+            
+        </member>
+        <member name="M:SqlTransfLib.utilz.SQLStringUtilz.FindColumnsFromSELECTQuery(System.String)">
+                       <summary>
+                           This function extract columns name from query.
+                       </summary>
+            
+                       <param name="query">
+                           ordinary SQL SELECT query. 
+                           RULE -> it must not contain inner queries (SELECT * FROM (SELECT * FROM inside ))    X
+                       </param>
+            
+                        <returns>
+                           string[] -> {'column1','column2'}
+                       </returns>
             
         </member>
         <member name="M:SqlTransfLib.utilz.SQLStringUtilz.DivideIntoSeperateQueries(System.String,System.String[]@,System.String@)">

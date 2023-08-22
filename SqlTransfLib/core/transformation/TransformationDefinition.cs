@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Text;
 using BenchmarkDotNet.Attributes;
+using SqlTransfLib.utilz;
 
 namespace SqlTransfLib.core.transformation.delegates
 {
@@ -36,12 +37,31 @@ namespace SqlTransfLib.core.transformation.delegates
 
 
 
+
     public static class Transformations{
 
 
 
+      /**
+        <summary>
+          Main function for starting formating SELECT query
+        </summary>
 
+      */
       public static string StartSelectQueryFormating(string input){
+          string[] tables = SQLStringUtilz.ExtractTablesFromSelectQuery(input);
+
+          StringBuilder builder = new();
+
+          foreach(string table in tables){
+
+            if(table.StartsWith("SELECT")){
+              
+            }
+
+
+          }
+
           return input;
       }
 
