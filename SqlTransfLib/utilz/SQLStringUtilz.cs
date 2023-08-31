@@ -148,48 +148,5 @@ namespace SqlTransfLib.utilz
                 throw new ArgumentException($"FROM is missing from query");
             }
         }
-
-
-
-
-        /**
-            <summary>
-                It takes query like this(SELECT * FROM (SELECT * FROM inside) as b  ) and seperate into SELECT * FROM as b and SELECT * FROM inside 
-            </summary>
-        */
-        public static void DivideIntoSeperateQueries(string input, out string[] splitQueries, out string queryTemplate)
-        {
-            List<string> queries = new();
-
-            queryTemplate = "";
-
-            while (input.IndexOf('(') is var index && (index != -1))
-            {
-
-
-                Stack<int> openBracketIndexes = new();
-                openBracketIndexes.Push(index);
-                int i = 0;
-
-                while (openBracketIndexes.Count != 0)
-                {
-
-                    if (input[i] == ')')
-                    {
-                        int startIndex = openBracketIndexes.Pop();
-                        string subquery = input.Substring(startIndex, (i - startIndex) + 1);
-                        input = input.Replace(subquery, $"<b>{{{queries.Count}}}</b>");
-
-                    }
-                    else if (input[i] == '(')
-                    {
-                        openBracketIndexes.Push(i);
-                    }
-                    ++i;
-
-                }
-            }
-            splitQueries = queries.ToArray();
-        }
     }
 }

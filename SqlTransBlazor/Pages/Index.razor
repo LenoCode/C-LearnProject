@@ -1,0 +1,48 @@
+﻿@page "/"
+@using SqlTransfDataAccess.Models.ClientDatabaseModels
+
+@inject ClientDatabaseContext clientDatabase;
+
+
+
+@if (_databases != null)
+{
+    @foreach (var client in _databases)
+    {
+        <p>@client.Name</p>
+    }
+}
+else
+{
+    <p>@databaseInitializationStatus</p>
+}
+
+<h1>Hello, world!</h1>
+
+
+@code
+{
+    private List<Database> _databases = null;
+    private string? databaseInitializationStatus = "loading...";
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        Task.Run(() =>
+            {
+                try
+                {
+                    _databases = clientDatabase.ClientDatabases.ToList();
+                }
+                catch (Exception e)
+                {
+                    databaseInitializationStatus = e.Message;
+                }
+                InvokeAsync(StateHasChanged);
+            }
+        );
+        
+    }
+
+
+}
