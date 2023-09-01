@@ -24,6 +24,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SqlTransfLib\SqlTransfLib.csproj" />
+    <ProjectReference Include="..\SqlTransfDataAccess\SqlTransfDataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="tests\SqlTransfDataAccess\dataTests\repository\" />
+    <Folder Include="tests\SqlTransfLib\" />
   </ItemGroup>
 
 </Project>

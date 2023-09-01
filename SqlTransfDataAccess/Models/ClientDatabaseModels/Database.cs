@@ -10,8 +10,10 @@ public class Database
     [Column("DbId")]
     public int Id { get; set; }
     
-    [MaxLength(100)]
+    [MaxLength(150)]
     public string? Name { get; set; }
-    
-    
+
+    public List<Configuration> DbConfigurations { get; set; }
+
+
 }

@@ -12,14 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
-builder.Services.AddDbContext<ClientDatabaseContext>(options =>
-{
-    Console.WriteLine("Hey ovdje sam");
-    options.UseNpgsql(builder.Configuration.GetConnectionString("default"));
-    
-});
+builder.Services.AddDbContext<ClientDatabaseContext>();
 
-var app = builder.Build();
+    var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {

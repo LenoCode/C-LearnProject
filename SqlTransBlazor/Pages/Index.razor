@@ -17,7 +17,7 @@ else
     <p>@databaseInitializationStatus</p>
 }
 
-<h1>Hello, world!</h1>
+<button @onclick="test">Save new configuration</button>
 
 
 @code
@@ -25,7 +25,25 @@ else
     private List<Database> _databases = null;
     private string? databaseInitializationStatus = "loading...";
 
+    public Configuration configuration = new Configuration();
+    
+    public async Task test()
+    {
+        configuration.Host = "Test";
+        configuration.Port = 123;
+        configuration.DbInfo = _databases[0];
+        configuration.User = "Leno";
+        configuration.StoringPass = "____";
 
+        clientDatabase.DbConfiguration.Add(configuration);
+        await clientDatabase.SaveChangesAsync();
+    }
+
+    /**
+     * <summary>
+     *  Adding database model list
+     * </summary>
+     */
     protected override async Task OnInitializedAsync()
     {
         Task.Run(() =>
@@ -41,8 +59,11 @@ else
                 InvokeAsync(StateHasChanged);
             }
         );
-        
     }
+    
+    
+    
+    
 
 
 }
